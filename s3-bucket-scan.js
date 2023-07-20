@@ -84,8 +84,8 @@ function checkForS3BucketURLLeakage(as, msg, param) {
 
   if (isLeakingS3BucketURL) {
       
-      var permissions = getPermissionsUsingAwsSdk(); 
-      // var permissions = getPemissionsUsingHttp();  
+      var permissions = getPermissionsUsingAwsSdk(requestUri); 
+      // var permissions = getPemissionsUsingHttp(requestUri);  
       var isBucketReadable = permissions.hasReadPermission;
       var isBucketWritable = permissions.hasWritePermission;
 
@@ -104,7 +104,7 @@ function checkForS3BucketURLLeakage(as, msg, param) {
           )
           .setParam(param)
           .setAttack('N/A')
-          .setEvidence('Evidence')
+          .setEvidence('Amazon S3')
           .setOtherInfo('')
           .setSolution('https://docs.aws.amazon.com/AmazonS3/latest/userguide/DataDurability.html')
           .setReference('https://docs.aws.amazon.com/AmazonS3/latest/userguide/DataDurability.html')
